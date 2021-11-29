@@ -317,7 +317,7 @@ const startHandler = (e) => {
   console.log(e.target);
 };
 
-export default function Example({ history }) {
+export default function Example({ history, location }) {
   return (
     <>
       <div className='pt-10 bg-gray-900 sm:pt-16 lg:pt-8 lg:pb-14 lg:overflow-hidden'>

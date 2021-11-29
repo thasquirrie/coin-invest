@@ -19,21 +19,21 @@
     "bcryptjs": "^2.4.3",
     "coinbase-commerce-node": "^1.0.4",
     "colors": "^1.4.0",
-    "cookie-parser": "^1.4.5",
+    "cookie-parser": "^1.4.6",
     "cors": "^2.8.5",
     "dotenv": "^9.0.2",
     "express": "^4.17.1",
     "jsonwebtoken": "^8.5.1",
-    "mongoose": "^5.12.10",
+    "mongoose": "^5.13.13",
     "morgan": "^1.10.0",
     "multer": "^1.4.2",
-    "purgecss": "^4.0.3",
+    "purgecss": "^4.1.2",
     "sharp": "^0.28.3",
-    "validator": "^13.6.0"
+    "validator": "^13.7.0"
   },
   "devDependencies": {
     "autoprefixer": "^9.8.6",
-    "concurrently": "^6.1.0",
+    "concurrently": "^6.4.0",
     "postcss": "^7.0.36",
     "tailwindcss": "npm:@tailwindcss/postcss7-compat@^2.2.0"
   },

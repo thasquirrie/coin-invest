@@ -14,7 +14,7 @@ const coins = [
   { type: 'Algo', symbol: 'ALGO' },
 ];
 
-export default function TransactionModal({ modal, history }) {
+export default function TransactionModal({ modal, history, location }) {
   const [open, setOpen] = useState(true);
   const [amount, setAmount] = useState('');
   const [selected, setSelected] = useState(coins[0]);

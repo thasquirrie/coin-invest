@@ -58,7 +58,7 @@ function classNames(...classes) {
   return classes.filter(Boolean).join(' ');
 }
 
-export default function Pricing({ history }) {
+export default function Pricing({ history, location }) {
   const [transactionModal, setTransactionModal] = useState(false);
 
   const userLogin = useSelector((state) => state.userLogin);
@@ -82,7 +82,11 @@ export default function Pricing({ history }) {
   return (
     <>
       {transactionModal && (
-        <TransactionModal modal={transactionModal} history={history} />
+        <TransactionModal
+          modal={transactionModal}
+          history={history}
+          location={location}
+        />
       )}
       <div className='max-w-7xl mx-auto py-24 px-4 bg-transparent sm:px-6 lg:px-8 sm:mt-32 md:mt-28 lg:mt-4'>
         <h2 className='text-xl font-extrabold text-gray-900 sm:text-3xl sm:leading-none sm:tracking-tight lg:text-4xl'>
