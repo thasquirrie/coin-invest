@@ -2,10 +2,16 @@ const catchAsync = require('../utils/catchAsync');
 const Transaction = require('../models/Transaction');
 
 exports.getAllTransactions = catchAsync(async (req, res, next) => {
-  const transactions = await Transaction.find();
+  let filter = {};
+
+  if (req.user.role === 'user') {
+    filter = { user: req.user.id };
+  }
+  const transactions = await Transaction.find(filter);
 
   res.status(200).json({
     status: 'success',
+    length: transactions.length,
     data: {
       transactions,
     },
@@ -33,7 +39,7 @@ exports.getTransaction = catchAsync(async (req, res, next) => {
 });
 
 exports.createTransaction = catchAsync(async (req, res, next) => {
-  let { coinSymbol, coinType, amount, user } = req.body;
+  let { coinSymbol, coinType, amount, user, address } = req.body;
   if (!user) user = req.user.id;
 
   const transactionDetails = {
@@ -41,6 +47,7 @@ exports.createTransaction = catchAsync(async (req, res, next) => {
     coinType,
     amount,
     user,
+    address,
   };
 
   console.log(transactionDetails);

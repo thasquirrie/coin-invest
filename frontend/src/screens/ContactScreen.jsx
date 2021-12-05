@@ -233,7 +233,7 @@ export default function ContactScreen() {
                         className='flex-shrink-0 w-6 h-6 text-teal-200'
                         aria-hidden='true'
                       />
-                      <span className='ml-3'>support@bigmachinelg.com</span>
+                      <span className='ml-3'>support@coin-invest.com</span>
                     </dd>
                   </dl>
                   <ul className='mt-8 flex space-x-12' role='list'>
@@ -299,8 +299,10 @@ export default function ContactScreen() {
                     Send us a message
                   </h3>
                   <form
-                    action='#'
-                    method='POST'
+                    onSubmit={(e) => {
+                      e.preventDefault();
+                      console.log('Submitted first!');
+                    }}
                     className='mt-6 grid grid-cols-1 gap-y-6 sm:grid-cols-2 sm:gap-x-8'
                   >
                     <div>
@@ -426,6 +428,7 @@ export default function ContactScreen() {
                       <button
                         type='submit'
                         className='mt-2 w-full inline-flex items-center justify-center px-6 py-3 border border-transparent rounded-md shadow-sm text-base font-medium text-white bg-teal-500 hover:bg-teal-600 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-teal-500 sm:w-auto'
+                        onClick={() => console.log('Submitted!')}
                       >
                         Submit
                       </button>

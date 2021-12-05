@@ -15,6 +15,10 @@ const transactionSchema = mongoose.Schema({
     type: Number,
     required: [true, 'A transaction amount is required!'],
   },
+  address: {
+    type: String,
+    required: [true, 'A transaction wallet address is required'],
+  },
   user: {
     type: mongoose.Schema.ObjectId,
     ref: 'User',

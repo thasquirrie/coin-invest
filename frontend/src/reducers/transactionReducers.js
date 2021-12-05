@@ -26,7 +26,7 @@ export const createTransactionReducer = (state = {}, action) => {
       };
     case CREATE_TRANSACTION_RESET:
       return {
-        enrollees: {},
+        transaction: {},
       };
     case CREATE_TRANSACTION_FAIL:
       return { loading: false, error: action.payload };
@@ -44,11 +44,11 @@ export const transactionListReducer = (state = {}, action) => {
       return {
         loading: false,
         success: true,
-        transaction: action.payload,
+        transactions: action.payload,
       };
     case TRANSACTION_LIST_RESET:
       return {
-        enrollees: {},
+        transaction: {},
       };
     case TRANSACTION_LIST_FAIL:
       return { loading: false, error: action.payload };

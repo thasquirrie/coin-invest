@@ -10,7 +10,7 @@ const pricing = {
       title: 'Tron',
       minimum: 500,
       units: 'TRX',
-      frequency: '/month',
+      frequency: '/week',
       // description: 'The essentials to provide your best work for clients.',
       features: [
         '50% rewards',
@@ -19,13 +19,15 @@ const pricing = {
         '48-hour support response time',
       ],
       cta: 'Opt-in',
+      name: 'Tron',
+      symbol: 'TRX',
       mostPopular: false,
     },
     {
       title: 'Doge',
       minimum: 3200,
       units: 'Doge',
-      frequency: '/month',
+      frequency: '/week',
       //  description: 'A plan that scales with your rapidly growing business.',
       features: [
         '50% rewards',
@@ -34,13 +36,15 @@ const pricing = {
         '48-hour support response time',
       ],
       cta: 'Opt-in',
+      name: 'Doge',
+      symbol: 'DOGE',
       mostPopular: true,
     },
     {
       title: 'Algorand',
       minimum: 50,
       units: 'Algo',
-      frequency: '/month',
+      frequency: '/week',
       //  description: 'Dedicated support and infrastructure for your company.',
       features: [
         '50% rewards',
@@ -49,6 +53,8 @@ const pricing = {
         '48-hour support response time',
       ],
       cta: 'Opt-in',
+      name: 'Algo',
+      symbol: 'ALGO',
       mostPopular: false,
     },
   ],
@@ -60,12 +66,17 @@ function classNames(...classes) {
 
 export default function Pricing({ history, location }) {
   const [transactionModal, setTransactionModal] = useState(false);
+  const [coinSymbol, setCoinSymbol] = useState('');
+  const [coinType, setCoinType] = useState('');
+  const [coinName, setCoinName] = useState('');
 
   const userLogin = useSelector((state) => state.userLogin);
 
   const { userInfo } = userLogin;
 
   console.log({ userInfo });
+  console.log(location.search);
+  console.log([location]);
 
   const onClickHandler = () => {
     console.log('Cho Cho');
@@ -86,9 +97,13 @@ export default function Pricing({ history, location }) {
           modal={transactionModal}
           history={history}
           location={location}
+          symbol={{ symbol: coinSymbol, type: coinType, name: coinName }}
         />
       )}
-      <div className='max-w-7xl mx-auto py-24 px-4 bg-transparent sm:px-6 lg:px-8 sm:mt-32 md:mt-28 lg:mt-4'>
+      <div
+        id='pricing'
+        className='max-w-7xl mx-auto py-24 px-4 bg-transparent sm:px-6 lg:px-8 sm:mt-32 md:mt-28 lg:mt-4'
+      >
         <h2 className='text-xl font-extrabold text-gray-900 sm:text-3xl sm:leading-none sm:tracking-tight lg:text-4xl'>
           Pricing plans forinvestment types
         </h2>
@@ -140,7 +155,12 @@ export default function Pricing({ history, location }) {
 
               <button
                 // to='#'
-                onClick={onClickHandler}
+                onClick={() => {
+                  onClickHandler();
+                  setCoinSymbol(tier.symbol);
+                  setCoinType(tier.name);
+                  setCoinName(tier.title);
+                }}
                 onMouseUp={onMouseUpHandler}
                 className={classNames(
                   tier.mostPopular

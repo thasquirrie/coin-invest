@@ -357,7 +357,7 @@ export default function Example({ history, location }) {
         </div>
       </div>
       <div className='bg-gradient-to-r from--500 to-cyan-600'>
-        <Pricing history={history} />
+        <Pricing location={location} history={history} />
       </div>
     </>
   );

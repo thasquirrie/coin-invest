@@ -5,16 +5,16 @@ const authController = require('../controllers/authController');
 const router = express.Router();
 
 router
- .route('/')
- .get(
-  authController.protect,
-  authController.restrictTo('admin'),
-  transactionController.getAllTransactions
- )
- .post(authController.protect, transactionController.createTransaction);
+  .route('/')
+  .get(
+    authController.protect,
+    // authController.restrictTo('admin'),
+    transactionController.getAllTransactions
+  )
+  .post(authController.protect, transactionController.createTransaction);
 
 router
- .route('/:id')
- .get(authController.protect, transactionController.getTransaction);
+  .route('/:id')
+  .get(authController.protect, transactionController.getTransaction);
 
 module.exports = router;
