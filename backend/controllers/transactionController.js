@@ -65,3 +65,29 @@ exports.createTransaction = catchAsync(async (req, res, next) => {
     },
   });
 });
+
+exports.editTransaction = catchAsync(async (req, res, next) => {
+  const transaction = Transaction.findByIdAndUpdate(
+    req.params.id,
+    req.body.transactionId,
+    {
+      new: true,
+      runValidators: true,
+    }
+  );
+
+  if (!transaction)
+    return next(
+      new AppError(
+        'No transaction with the specified id exist on this server',
+        404
+      )
+    );
+
+  res.status(200).json({
+    status: 'success',
+    data: {
+      transaction,
+    },
+  });
+});

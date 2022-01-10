@@ -9,11 +9,18 @@ const app = require('./app');
 
 console.log(process.env.NODE_ENV);
 
-const DB_LOCAL = process.env.DATABASE_LOCAL;
-const DB = process.env.DATABASE.replace(
-  '<password>',
-  process.env.DATABASE_PASSWORD
-);
+let DB = '';
+
+if (process.env.NODE_ENV === 'development') {
+  DB = process.env.DATABASE_LOCAL;
+} else if (process.env.NODE_ENV === 'production') {
+  DB = process.env.DATABASE.replace(
+    '<password>',
+    process.env.DATABASE_PASSWORD
+  );
+}
+
+console.log({ DB });
 
 const connectDB = async () => {
   try {

@@ -90,7 +90,7 @@
 /* This example requires Tailwind CSS v2.0+ */
 import { Fragment, useRef, useState } from 'react';
 import { Dialog, Transition } from '@headlessui/react';
-import { CheckIcon, CogIcon } from '@heroicons/react/outline';
+import { CogIcon } from '@heroicons/react/outline';
 import { CopyToClipboard } from 'react-copy-to-clipboard';
 
 export default function InfoModal({ history, coinType, amount }) {
@@ -170,7 +170,9 @@ export default function InfoModal({ history, coinType, amount }) {
                       and type of token you filled in the previous form. Click
                       on the{' '}
                       <span className='italic font-medium'>Copy Address</span>{' '}
-                      button to copy the address to send the token to.
+                      button to copy the address to send the token to. When you
+                      are done go to your dashboard and add the transaction ID
+                      to your transaction.
                     </p>
                   </div>
                 </div>

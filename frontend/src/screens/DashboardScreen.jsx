@@ -1,98 +1,17 @@
-import { Fragment, useState, useEffect } from 'react';
-import { Dialog, Menu, Transition } from '@headlessui/react';
-import {
-  BellIcon,
-  ClockIcon,
-  CogIcon,
-  CreditCardIcon,
-  DocumentReportIcon,
-  HomeIcon,
-  MenuAlt1Icon,
-  PlusIcon,
-  QuestionMarkCircleIcon,
-  ScaleIcon,
-  ShieldCheckIcon,
-  UserGroupIcon,
-  XCircleIcon,
-  XIcon,
-} from '@heroicons/react/outline';
+import { useState, useEffect } from 'react';
+
+import { MenuAlt1Icon, PlusIcon, ScaleIcon } from '@heroicons/react/outline';
 import {
   CashIcon,
-  CheckCircleIcon,
-  ChevronDownIcon,
   ChevronRightIcon,
   OfficeBuildingIcon,
-  SearchIcon,
 } from '@heroicons/react/solid';
 import { useDispatch, useSelector } from 'react-redux';
-import { Link, NavLink } from 'react-router-dom';
-import SettingsScreen from './SettingsScreen';
+import { Link } from 'react-router-dom';
 import Details from './Details';
 import { getMyDetails } from '../actions/userActions';
-import Modal from '../components/Modal';
 import Sidebar from '../components/Sidebar';
 import { listTransactions } from '../actions/transactionActions';
-
-// const navigation = [
-//   {
-//     name: 'Dashboard',
-//     href: '/dashboard',
-//     icon: DocumentReportIcon,
-//     current: false,
-//   },
-//   { name: 'Home', href: '/', icon: HomeIcon, current: false },
-//   { name: 'Profile', href: '/profile', icon: CreditCardIcon, current: false },
-//   {
-//     name: 'Contact Us',
-//     href: '/contact',
-//     icon: UserGroupIcon,
-//     current: false,
-//   },
-//   //  { name: 'History', href: '#', icon: ClockIcon, current: false },
-//   //  { name: 'Balances', href: '#', icon: ScaleIcon, current: false },
-// ];
-// const secondaryNavigation = [
-//   { name: 'Settings', href: '/settings', icon: CogIcon },
-//   //  { name: 'Help', href: '', icon: QuestionMarkCircleIcon },
-//   { name: 'Privacy', href: '/privacy', icon: ShieldCheckIcon },
-// ];
-const cards = [
-  { name: 'Account balance', href: '#', icon: ScaleIcon, amount: '$30,659.45' },
-  // More items...
-];
-// const transactions = [
-//   {
-//     id: 1,
-//     name: 'ALGO transaction',
-//     href: '#',
-//     amount: '100',
-//     currency: 'ALGO',
-//     status: 'failed',
-//     date: 'July 11, 2020',
-//     datetime: '2020-07-11',
-//   },
-//   {
-//     id: 2,
-//     name: 'DOGE transaction',
-//     href: '#',
-//     amount: '10000',
-//     currency: 'DOGE',
-//     status: 'success',
-//     date: 'November 11, 2021',
-//     datetime: '2021-11-11',
-//   },
-//   {
-//     id: 3,
-//     name: 'TRON transaction',
-//     href: '#',
-//     amount: '100000',
-//     currency: 'TRX',
-//     status: 'success',
-//     date: 'November 11, 2021',
-//     datetime: '2021-11-11',
-//   },
-//   // More transactions...
-// ];
 
 const statusStyles = {
   success: 'bg-green-100 text-green-800',
@@ -190,43 +109,13 @@ const Dashboard = ({ history, location }) => {
                                 className='flex-shrink-0 mr-1.5 h-5 w-5 text-gray-400'
                                 aria-hidden='true'
                               />
-                              {/* {user && user.city}, {user && user.country} */}
                             </dd>
                             <dt className='sr-only'>Account status</dt>
-                            {/* {user.verified ? (
-               <dd className='mt-3 flex items-center text-sm text-gray-500 font-medium sm:mr-6 sm:mt-0 capitalize'>
-                <CheckCircleIcon
-                 className='flex-shrink-0 mr-1.5 h-5 w-5 text-green-400'
-                 aria-hidden='true'
-                />
-                Verified account
-               </dd>
-              ) : (
-               <dd className='mt-3 flex items-center text-sm text-gray-500 font-medium sm:mr-6 sm:mt-0 capitalize'>
-                <XCircleIcon
-                 className='flex-shrink-0 mr-1.5 h-5 w-5 text-red-400'
-                 aria-hidden='true'
-                />
-                Unverified account
-               </dd>
-              )} */}
                           </dl>
                         </div>
                       </div>
                     </div>
-                    <div className='mt-6 flex space-x-3 md:mt-0 md:ml-4'>
-                      {/* <button
-          type='button'
-          className='inline-flex items-center px-4 py-2 border border-gray-300 shadow-sm text-sm font-medium rounded-md text-gray-700 bg-white hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-cyan-500'
-         >
-          Add money
-         </button> */}
-                      {/* {!user.verified && (
-            <button className='inline-flex items-center px-4 py-2 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-cyan-600 hover:bg-cyan-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-cyan-500 disabled:opacity-50'>
-             <Link to='/pricing'>Verify Membership</Link>
-            </button>
-           )} */}
-                    </div>
+                    <div className='mt-6 flex space-x-3 md:mt-0 md:ml-4'></div>
                   </div>
                 </div>
               </div>
@@ -256,9 +145,9 @@ const Dashboard = ({ history, location }) => {
                   <div className='shadow sm:hidden'>
                     <ul className='mt-2 divide-y divide-gray-200 overflow-hidden shadow sm:hidden'>
                       {transactions.map((transaction) => (
-                        <li key={transaction.id}>
+                        <li key={transaction._id}>
                           <Link
-                            to={transaction.href}
+                            to={`/transactions/${transaction._id}`}
                             className='block px-4 py-4 bg-white hover:bg-gray-50'
                           >
                             <span className='flex items-center space-x-4'>
@@ -267,9 +156,9 @@ const Dashboard = ({ history, location }) => {
                                   className='flex-shrink-0 h-5 w-5 text-gray-400'
                                   aria-hidden='true'
                                 />
-                                <span className='flex flex-col text-gray-500 text-sm truncate'>
+                                <span className='flex flex-col text-teal-500 text-sm truncate'>
                                   <span className='truncate'>
-                                    {transaction.name}
+                                    {transaction.coinType} Transaction
                                   </span>
                                   <span>
                                     <span className='text-gray-900 font-medium'>
@@ -343,14 +232,14 @@ const Dashboard = ({ history, location }) => {
                                   <td className='max-w-0 w-full px-6 py-4 whitespace-nowrap text-sm text-gray-900'>
                                     <div className='flex'>
                                       <Link
-                                        to={transaction.href}
+                                        to={`/transactions/${transaction._id}`}
                                         className='group inline-flex space-x-2 truncate text-sm'
                                       >
                                         <CashIcon
                                           className='flex-shrink-0 h-5 w-5 text-gray-400 group-hover:text-gray-500'
                                           aria-hidden='true'
                                         />
-                                        <p className='text-gray-500 truncate group-hover:text-gray-900'>
+                                        <p className='text-teal-500 truncate group-hover:text-teal-900'>
                                           {transaction.coinType} Transaction
                                         </p>
                                       </Link>

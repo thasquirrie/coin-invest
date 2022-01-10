@@ -1,20 +1,7 @@
 /* This example requires Tailwind CSS v2.0+ */
-import { Fragment, useState } from 'react';
+import { Fragment } from 'react';
 import { Listbox, Transition } from '@headlessui/react';
 import { CheckIcon, SelectorIcon } from '@heroicons/react/solid';
-
-// const people = [
-//   { name: 'Wade Cooper', username: '@wadecooper' },
-//   { name: 'Arlene Mccoy', username: '@arlenemccoy' },
-//   { name: 'Devon Webb', username: '@devonwebb' },
-//   { name: 'Tom Cook', username: '@tomcook' },
-//   { name: 'Tanya Fox', username: '@tanyafox' },
-//   { name: 'Hellen Schmidt', username: '@hellenschmidt' },
-//   { name: 'Caroline Schultz', username: '@carolineschultz' },
-//   { name: 'Mason Heaney', username: '@masonheaney' },
-//   { name: 'Claudie Smitham', username: '@claudiesmitham' },
-//   { name: 'Emil Schaefer', username: '@emilschaefer' },
-// ];
 
 function classNames(...classes) {
   return classes.filter(Boolean).join(' ');

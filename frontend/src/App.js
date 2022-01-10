@@ -9,8 +9,8 @@ import Footer from './components/Footer';
 import DashboardScreen from './screens/DashboardScreen';
 import PricingScreen from './screens/PricingScreen';
 import ContactScreen from './screens/ContactScreen';
-import ProfileScreen from './screens/ProfileScreen';
 import CreateTransaction from './screens/CreateTransactionScreen';
+import TransactionDetails from './screens/TransactionDetails';
 
 function App() {
   return (
@@ -23,10 +23,10 @@ function App() {
               <Route path='/login' component={LoginScreen} />
               <Route path='/signup' component={SignupScreen} />
               <Route path='/dashboard' component={DashboardScreen} />
-              <Route path='/profile' component={ProfileScreen} />
               <Route path='/pricing' component={PricingScreen} />
               <Route path='/contact' component={ContactScreen} />
               <Route path='/create-transaction' component={CreateTransaction} />
+              <Route path='/transactions/:id' component={TransactionDetails} />
               <Route path='/' component={HomeScreen} exact />
             </Switch>
           </main>

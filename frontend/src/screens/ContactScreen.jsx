@@ -23,18 +23,9 @@
   }
   ```
 */
-import { Fragment } from 'react';
-import { Popover, Transition } from '@headlessui/react';
-import { MailIcon, MenuIcon, PhoneIcon, XIcon } from '@heroicons/react/outline';
-import { ExternalLinkIcon } from '@heroicons/react/solid';
-import { Link } from 'react-router-dom';
 
-const navigation = [
-  { name: 'Work', href: '#' },
-  { name: 'Services', href: '#' },
-  { name: 'About', href: '#' },
-  { name: 'Blog', href: '#' },
-];
+import { MailIcon, PhoneIcon } from '@heroicons/react/outline';
+import { Link } from 'react-router-dom';
 
 export default function ContactScreen() {
   return (
@@ -236,7 +227,7 @@ export default function ContactScreen() {
                       <span className='ml-3'>support@coin-invest.com</span>
                     </dd>
                   </dl>
-                  <ul className='mt-8 flex space-x-12' role='list'>
+                  <ul className='mt-8 flex space-x-12'>
                     <li>
                       <Link
                         className='text-teal-200 hover:text-teal-100'
