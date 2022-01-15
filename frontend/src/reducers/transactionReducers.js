@@ -81,3 +81,28 @@ export const transactionDetailsReducer = (
       return state;
   }
 };
+
+export const transactionUpdateReducer = (
+  state = { transaction: {} },
+  action
+) => {
+  switch (action.type) {
+    case TRANSACTION_DETAILS_REQUEST:
+      return { loading: true };
+    case TRANSACTION_DETAILS_SUCCESS:
+      console.log(action.payload);
+      return {
+        loading: false,
+        success: true,
+        transaction: action.payload,
+      };
+    case TRANSACTION_DETAILS_RESET:
+      return {
+        enrollees: {},
+      };
+    case TRANSACTION_DETAILS_FAIL:
+      return { loading: false, error: action.payload };
+    default:
+      return state;
+  }
+};

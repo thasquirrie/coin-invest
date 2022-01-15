@@ -38,6 +38,8 @@ export default function Example() {
   const { loading, error, transaction } = transactionDetails;
   console.log({ transaction, loading });
 
+  // const {updateTransaction}
+
   const params = useParams();
 
   useEffect(() => {
