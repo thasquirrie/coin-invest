@@ -5,6 +5,7 @@ import { transactDetails } from '../actions/transactionActions';
 import LoadingCircle from '../components/LoadingCircle';
 import LoadingPage from '../components/LoadingPage';
 import TransactionIDInput from '../components/TransactionIDInput';
+import { TRANSACTION_DETAILS_RESET } from '../constants/transactionConstants';
 
 /* This example requires Tailwind CSS v2.0+ */
 const products = [
@@ -53,6 +54,7 @@ export default function Example() {
       setTransactionStatus(transaction.transactionStatus);
     } else {
       dispatch(transactDetails(params.id));
+      dispatch({ type: TRANSACTION_DETAILS_RESET });
     }
   }, [dispatch, params, transaction]);
 
