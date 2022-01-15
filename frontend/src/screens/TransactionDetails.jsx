@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useParams } from 'react-router-dom';
 import { transactDetails } from '../actions/transactionActions';
 import LoadingCircle from '../components/LoadingCircle';
+import LoadingPage from '../components/LoadingPage';
 import TransactionIDInput from '../components/TransactionIDInput';
 
 /* This example requires Tailwind CSS v2.0+ */
@@ -35,6 +36,7 @@ export default function Example() {
   const transactionDetails = useSelector((state) => state.transactionDetails);
 
   const { loading, error, transaction } = transactionDetails;
+  console.log({ transaction, loading });
 
   const params = useParams();
 
@@ -56,8 +58,8 @@ export default function Example() {
     ? transaction.coinType === 'Doge'
       ? '../img/dogecoin.png'
       : transaction.coinType === 'Algo'
-      ? './img/algorand.png'
-      : './img/tron.png'
+      ? '../img/algorand.png'
+      : '../img/tron.png'
     : '';
 
   const days = 7 * 24 * 60 * 60 * 1000;
@@ -70,7 +72,7 @@ export default function Example() {
   return (
     <>
       {loading ? (
-        <LoadingCircle color='text-blue-400' size='20' />
+        <LoadingPage />
       ) : (
         <main className='bg-white px-4 pt-16 pb-24 sm:px-6 sm:pt-24 lg:px-8 lg:py-32'>
           <div className='max-w-3xl mx-auto'>
@@ -133,7 +135,9 @@ export default function Example() {
                             Quantity
                           </dt>
                           <dd className='ml-2 text-gray-700'>
-                            {transaction.amount.toLocaleString()} units
+                            {transaction.amount &&
+                              transaction.amount.toLocaleString()}{' '}
+                            units
                           </dd>
                         </div>
                         <div className='pl-4 flex sm:pl-6'>
@@ -198,7 +202,7 @@ export default function Example() {
                   </div>
                   <div>
                     <dt className='font-medium text-gray-900'>
-                      Expected Payment Date
+                      Expected Withdrawal Date
                     </dt>
                     <dd className='mt-2 text-gray-700'>
                       {new Date(
@@ -216,7 +220,8 @@ export default function Example() {
                       Invested Amount
                     </dt>
                     <dd className='text-gray-700'>
-                      {transaction.amount.toLocaleString()}{' '}
+                      {transaction.amount &&
+                        transaction.amount.toLocaleString()}{' '}
                       {transaction.coinSymbol}
                     </dd>
                   </div>
@@ -225,7 +230,8 @@ export default function Example() {
                       Accumulated Earnings
                     </dt>
                     <dd className='text-gray-700'>
-                      {(transaction.amount * 0.05).toLocaleString()}{' '}
+                      {transaction.amount &&
+                        (transaction.amount * 0.05).toLocaleString()}{' '}
                       {transaction.coinSymbol}
                     </dd>
                   </div>

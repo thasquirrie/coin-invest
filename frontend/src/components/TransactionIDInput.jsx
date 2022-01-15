@@ -16,7 +16,10 @@
 */
 import { useState } from 'react';
 import { ExclamationCircleIcon } from '@heroicons/react/solid';
-import { CheckCircleIcon } from '@heroicons/react/outline';
+import {
+  CheckCircleIcon,
+  InformationCircleIcon,
+} from '@heroicons/react/outline';
 
 const classNames = (...classes) => {
   return classes.filter(Boolean).join(' ');
@@ -37,6 +40,10 @@ export default function TransactionIDInput({
         >
           Transaction ID
         </label>
+        <span className='flex items-center text-gray-700 font-light'>
+          <InformationCircleIcon className='h-5 w-5 mr-1 text-gray-700'></InformationCircleIcon>
+          For easy tracking of transaction{' '}
+        </span>
         <div className='sm:flex'>
           <div className='mt-1 relative rounded-md shadow-sm'>
             <input

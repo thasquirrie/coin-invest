@@ -120,11 +120,11 @@ export const transactDetails = (id) => async (dispatch, getState) => {
       },
     } = await axios({
       method: 'GET',
-      url: `/api/v1/transactions/${id}`,
+      url: `http://localhost:8000/api/v1/transactions/${id}`,
       headers,
     });
 
-    console.log(transaction);
+    console.log('New:', transaction);
 
     dispatch({
       type: TRANSACTION_DETAILS_SUCCESS,
