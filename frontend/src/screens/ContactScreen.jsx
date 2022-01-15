@@ -32,13 +32,13 @@ export default function ContactScreen() {
     <div className='bg-gray-300 py-4'>
       <main className=' max-w-7xl mx-auto overflow-hidden bg-gray-100 shadow-lg rounded-lg'>
         {/* Header */}
-        <div className='bg-warm-gray-50'>
+        <div className='bg--50'>
           <div className='py-24 lg:py-32'>
             <div className='relative z-10 max-w-7xl mx-auto pl-4 pr-8 sm:px-6 lg:px-8'>
-              <h1 className='text-4xl font-extrabold tracking-tight text-warm-gray-900 sm:text-5xl lg:text-6xl'>
+              <h1 className='text-4xl font-extrabold tracking-tight text--900 sm:text-5xl lg:text-6xl'>
                 Get in touch
               </h1>
-              <p className='mt-6 text-xl text-warm-gray-500 max-w-3xl'>
+              <p className='mt-6 text-xl text--500 max-w-3xl'>
                 Vel nunc non ut montes, viverra tempor. Proin lectus nibh
                 phasellus morbi non morbi. In elementum urna ut volutpat.
                 Sagittis et vel et fermentum amet consequat.
@@ -49,10 +49,7 @@ export default function ContactScreen() {
 
         {/* Contact section */}
         <section className='relative bg-white' aria-labelledby='contactHeading'>
-          <div
-            className='absolute w-full h-1/2 bg-warm-gray-50'
-            aria-hidden='true'
-          />
+          <div className='absolute w-full h-1/2 bg--50' aria-hidden='true' />
           {/* Decorative dot pattern */}
           <div className='relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8'>
             <svg
@@ -77,7 +74,7 @@ export default function ContactScreen() {
                     y={0}
                     width={4}
                     height={4}
-                    className='text-warm-gray-200'
+                    className='text--200'
                     fill='currentColor'
                   />
                 </pattern>
@@ -286,7 +283,7 @@ export default function ContactScreen() {
 
                 {/* Contact form */}
                 <div className='py-10 px-6 sm:px-10 lg:col-span-2 xl:p-12'>
-                  <h3 className='text-lg font-medium text-warm-gray-900'>
+                  <h3 className='text-lg font-medium text--900'>
                     Send us a message
                   </h3>
                   <form
@@ -299,7 +296,7 @@ export default function ContactScreen() {
                     <div>
                       <label
                         htmlFor='first_name'
-                        className='block text-sm font-medium text-warm-gray-900'
+                        className='block text-sm font-medium text--900'
                       >
                         First name
                       </label>
@@ -309,14 +306,14 @@ export default function ContactScreen() {
                           name='first_name'
                           id='first_name'
                           autoComplete='given-name'
-                          className='py-3 px-4 block w-full shadow-sm text-warm-gray-900 focus:ring-teal-500 focus:border-teal-500 border-warm-gray-300 rounded-md'
+                          className='py-3 px-4 block w-full shadow-sm text--900 focus:ring-teal-500 focus:border-teal-500 border--300 rounded-md'
                         />
                       </div>
                     </div>
                     <div>
                       <label
                         htmlFor='last_name'
-                        className='block text-sm font-medium text-warm-gray-900'
+                        className='block text-sm font-medium text--900'
                       >
                         Last name
                       </label>
@@ -326,14 +323,14 @@ export default function ContactScreen() {
                           name='last_name'
                           id='last_name'
                           autoComplete='family-name'
-                          className='py-3 px-4 block w-full shadow-sm text-warm-gray-900 focus:ring-teal-500 focus:border-teal-500 border-warm-gray-300 rounded-md'
+                          className='py-3 px-4 block w-full shadow-sm text--900 focus:ring-teal-500 focus:border-teal-500 border--300 rounded-md'
                         />
                       </div>
                     </div>
                     <div>
                       <label
                         htmlFor='email'
-                        className='block text-sm font-medium text-warm-gray-900'
+                        className='block text-sm font-medium text--900'
                       >
                         Email
                       </label>
@@ -343,7 +340,7 @@ export default function ContactScreen() {
                           name='email'
                           type='email'
                           autoComplete='email'
-                          className='py-3 px-4 block w-full shadow-sm text-warm-gray-900 focus:ring-teal-500 focus:border-teal-500 border-warm-gray-300 rounded-md'
+                          className='py-3 px-4 block w-full shadow-sm text--900 focus:ring-teal-500 focus:border-teal-500 border--300 rounded-md'
                         />
                       </div>
                     </div>
@@ -351,14 +348,11 @@ export default function ContactScreen() {
                       <div className='flex justify-between'>
                         <label
                           htmlFor='phone'
-                          className='block text-sm font-medium text-warm-gray-900'
+                          className='block text-sm font-medium text--900'
                         >
                           Phone
                         </label>
-                        <span
-                          id='phone-optional'
-                          className='text-sm text-warm-gray-500'
-                        >
+                        <span id='phone-optional' className='text-sm text--500'>
                           Optional
                         </span>
                       </div>
@@ -368,7 +362,7 @@ export default function ContactScreen() {
                           name='phone'
                           id='phone'
                           autoComplete='tel'
-                          className='py-3 px-4 block w-full shadow-sm text-warm-gray-900 focus:ring-teal-500 focus:border-teal-500 border-warm-gray-300 rounded-md'
+                          className='py-3 px-4 block w-full shadow-sm text--900 focus:ring-teal-500 focus:border-teal-500 border--300 rounded-md'
                           aria-describedby='phone-optional'
                         />
                       </div>
@@ -376,7 +370,7 @@ export default function ContactScreen() {
                     <div className='sm:col-span-2'>
                       <label
                         htmlFor='subject'
-                        className='block text-sm font-medium text-warm-gray-900'
+                        className='block text-sm font-medium text--900'
                       >
                         Subject
                       </label>
@@ -385,7 +379,7 @@ export default function ContactScreen() {
                           type='text'
                           name='subject'
                           id='subject'
-                          className='py-3 px-4 block w-full shadow-sm text-warm-gray-900 focus:ring-teal-500 focus:border-teal-500 border-warm-gray-300 rounded-md'
+                          className='py-3 px-4 block w-full shadow-sm text--900 focus:ring-teal-500 focus:border-teal-500 border--300 rounded-md'
                         />
                       </div>
                     </div>
@@ -393,14 +387,11 @@ export default function ContactScreen() {
                       <div className='flex justify-between'>
                         <label
                           htmlFor='message'
-                          className='block text-sm font-medium text-warm-gray-900'
+                          className='block text-sm font-medium text--900'
                         >
                           Message
                         </label>
-                        <span
-                          id='message-max'
-                          className='text-sm text-warm-gray-500'
-                        >
+                        <span id='message-max' className='text-sm text--500'>
                           Max. 500 characters
                         </span>
                       </div>
@@ -409,7 +400,7 @@ export default function ContactScreen() {
                           id='message'
                           name='message'
                           rows={4}
-                          className='py-3 px-4 block w-full shadow-sm text-warm-gray-900 focus:ring-teal-500 focus:border-teal-500 border-warm-gray-300 rounded-md'
+                          className='py-3 px-4 block w-full shadow-sm text--900 focus:ring-teal-500 focus:border-teal-500 border--300 rounded-md'
                           aria-describedby='message-max'
                           defaultValue={''}
                         />
@@ -436,21 +427,21 @@ export default function ContactScreen() {
     <div className='max-w-7xl mx-auto py-24 px-4 sm:py-32 sm:px-6 lg:px-8'>
      <h2
       id='officesHeading'
-      className='text-3xl font-extrabold text-warm-gray-900'
+      className='text-3xl font-extrabold text--900'
      >
       Our offices
      </h2>
-     <p className='mt-6 text-lg text-warm-gray-500 max-w-3xl'>
+     <p className='mt-6 text-lg text--500 max-w-3xl'>
       Varius facilisi mauris sed sit. Non sed et duis dui leo, vulputate id
       malesuada non. Cras aliquet purus dui laoreet diam sed lacus, fames.
      </p>
      <div className='mt-10 grid grid-cols-1 gap-10 sm:grid-cols-2 lg:grid-cols-4'>
       {offices.map((office) => (
        <div key={office.id}>
-        <h3 className='text-lg font-medium text-warm-gray-900'>
+        <h3 className='text-lg font-medium text--900'>
          {office.city}
         </h3>
-        <p className='mt-2 text-base text-warm-gray-500'>
+        <p className='mt-2 text-base text--500'>
          {office.address.map((line) => (
           <span key={line} className='block'>
            {line}
