@@ -3,6 +3,9 @@ import {
   CREATE_TRANSACTION_FAIL,
   CREATE_TRANSACTION_REQUEST,
   CREATE_TRANSACTION_SUCCESS,
+  TRANSACTION_DETAILS_FAIL,
+  TRANSACTION_DETAILS_REQUEST,
+  TRANSACTION_DETAILS_SUCCESS,
   TRANSACTION_LIST_FAIL,
   TRANSACTION_LIST_REQUEST,
   TRANSACTION_LIST_SUCCESS,
@@ -88,6 +91,49 @@ export const listTransactions = () => async (dispatch, getState) => {
     console.log(error);
     dispatch({
       type: TRANSACTION_LIST_FAIL,
+      payload:
+        error.response && error.response.data.message
+          ? error.response.data.message
+          : error.message,
+    });
+  }
+};
+
+export const transactDetails = (id) => async (dispatch, getState) => {
+  try {
+    dispatch({ type: TRANSACTION_DETAILS_REQUEST });
+
+    const {
+      userLogin: {
+        userInfo: { token },
+      },
+    } = getState();
+
+    const headers = {
+      'Content-Type': 'application/json',
+      Authorization: `Bearer ${token}`,
+    };
+
+    const {
+      data: {
+        data: { transaction },
+      },
+    } = await axios({
+      method: 'GET',
+      url: `/api/v1/transactions/${id}`,
+      headers,
+    });
+
+    console.log(transaction);
+
+    dispatch({
+      type: TRANSACTION_DETAILS_SUCCESS,
+      payload: transaction,
+    });
+  } catch (error) {
+    console.log(error);
+    dispatch({
+      type: TRANSACTION_DETAILS_FAIL,
       payload:
         error.response && error.response.data.message
           ? error.response.data.message

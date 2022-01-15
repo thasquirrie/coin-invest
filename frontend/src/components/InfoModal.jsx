@@ -102,9 +102,9 @@ export default function InfoModal({ history, coinType, amount }) {
   console.log({ coinType, amount });
 
   const address = {
-    tron: 'L5ZUWVNQTIWVPI5Y4NPX3SENIWQXDD7AZQ2RO45D2I4APS35DLYWYJKV4I',
-    doge: 'MQ5C4CLID3HLUHJTY7QFFUGY25ZR4HRWMTAAKROBZPEEUDJ4TDZGV646Y4',
-    algo: 'MG34RCLID3HLUHJTY7QFFUGY25ZR4HRWMTAAKROBZPEEUDJ4TDZGV32546',
+    tron: 'TYBZqfehfEzmFXC9haxvsszgQUP69HQrwqTYBZqfehfEzmFXC9haxvsszgQUP69HQrwq',
+    doge: 'DKxwKEdkrrXNPJ8PtrNpV7ogXFbkoUGM4jDKxwKEdkrrXNPJ8PtrNpV7ogXFbkoUGM4j',
+    algo: '3UQLZWSEHMOSAVQBZAOO225R2WZEKBLMJPEUVJGSYPMBFBMMX3GHOCRIFU',
   };
 
   const { tron, doge, algo } = address;

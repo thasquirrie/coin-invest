@@ -1,11 +1,7 @@
 import { useState, useEffect } from 'react';
 
-import { MenuAlt1Icon, PlusIcon, ScaleIcon } from '@heroicons/react/outline';
-import {
-  CashIcon,
-  ChevronRightIcon,
-  OfficeBuildingIcon,
-} from '@heroicons/react/solid';
+import { MenuAlt1Icon, PlusIcon } from '@heroicons/react/outline';
+import { CashIcon, ChevronRightIcon } from '@heroicons/react/solid';
 import { useDispatch, useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
 import Details from './Details';
@@ -102,16 +98,6 @@ const Dashboard = ({ history, location }) => {
                               Welcome, {user.username}
                             </h1>
                           </div>
-                          <dl className='mt-6 flex flex-col sm:ml-3 sm:mt-1 sm:flex-row sm:flex-wrap'>
-                            <dt className='sr-only'>Location</dt>
-                            <dd className='flex items-center text-sm text-gray-500 font-medium capitalize sm:mr-6'>
-                              <OfficeBuildingIcon
-                                className='flex-shrink-0 mr-1.5 h-5 w-5 text-gray-400'
-                                aria-hidden='true'
-                              />
-                            </dd>
-                            <dt className='sr-only'>Account status</dt>
-                          </dl>
                         </div>
                       </div>
                     </div>
@@ -145,7 +131,7 @@ const Dashboard = ({ history, location }) => {
                   <div className='shadow sm:hidden'>
                     <ul className='mt-2 divide-y divide-gray-200 overflow-hidden shadow sm:hidden'>
                       {transactions.map((transaction) => (
-                        <li key={transaction._id}>
+                        <li key={transaction.id}>
                           <Link
                             to={`/transactions/${transaction._id}`}
                             className='block px-4 py-4 bg-white hover:bg-gray-50'

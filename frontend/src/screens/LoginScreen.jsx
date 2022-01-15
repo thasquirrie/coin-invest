@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { Link, NavLink } from 'react-router-dom';
 import { login } from '../actions/userActions';
 import Modal from '../components/Modal';
+import { USER_DETAILS_RESET } from '../constants/userConstants';
 
 const LoginScreen = ({ location, history }) => {
   const [email, setEmail] = useState('');
@@ -25,7 +26,12 @@ const LoginScreen = ({ location, history }) => {
     if (userInfo) {
       history.push(redirect);
     }
-  }, [history, redirect, userInfo]);
+    if (error) {
+      window.setTimeout(() => {
+        dispatch({ type: USER_DETAILS_RESET });
+      });
+    }
+  }, [dispatch, error, history, redirect, userInfo]);
 
   const submitHandler = (e) => {
     e.preventDefault();
