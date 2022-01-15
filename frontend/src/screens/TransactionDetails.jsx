@@ -63,11 +63,6 @@ export default function Example() {
     : '';
 
   const days = 7 * 24 * 60 * 60 * 1000;
-  console.log({ days });
-
-  const created = transaction && Date.parse(transaction.dateCreated) + days;
-  console.log({ created });
-  console.log(Date.now() < created);
 
   return (
     <>

@@ -120,7 +120,7 @@ export const transactDetails = (id) => async (dispatch, getState) => {
       },
     } = await axios({
       method: 'GET',
-      url: `http://localhost:8000/api/v1/transactions/${id}`,
+      url: `/api/v1/transactions/${id}`,
       headers,
     });
 
