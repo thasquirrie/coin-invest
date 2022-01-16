@@ -206,6 +206,10 @@ export default function Example() {
                       {new Date(
                         Date.parse(transaction.dateCreated) + days
                       ).toDateString()}
+                      ,{' '}
+                      {new Date(
+                        Date.parse(transaction.dateCreated) + days
+                      ).toLocaleTimeString('en-US', { hour12: false })}
                     </dd>
                   </div>
                 </dl>

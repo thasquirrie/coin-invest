@@ -32,7 +32,7 @@ export const login = (email, password) => async (dispatch) => {
    },
   } = await axios({
    method: 'POST',
-   url: '/api/v1/users/login',
+   url: 'http://localhost:8000/api/v1/users/login',
    data: { email, password },
    config,
   });
@@ -77,7 +77,7 @@ export const signup = (data) => async (dispatch) => {
    },
   } = await axios({
    method: 'POST',
-   url: '/api/v1/users/signup',
+   url: 'http://localhost:8000/api/v1/users/signup',
    data,
    config,
   });
@@ -121,7 +121,7 @@ export const getUserDetails = (id) => async (dispatch, getState) => {
    },
   } = await axios({
    method: 'GET',
-   url: `/api/v1/users/${id}`,
+   url: `http://localhost:8000/api/v1/users/${id}`,
    headers,
   });
 
@@ -163,7 +163,7 @@ export const getMyDetails = () => async (dispatch, getState) => {
    },
   } = await axios({
    method: 'GET',
-   url: `/api/v1/users/me`,
+   url: `http://localhost:8000/api/v1/users/me`,
    headers,
   });
 
@@ -208,7 +208,7 @@ export const userUpdateDetails = (data) => async (dispatch, getState) => {
    },
   } = await axios({
    method: 'PATCH',
-   url: `/api/v1/users/update-me`,
+   url: `http://localhost:8000/api/v1/users/update-me`,
    headers,
    data,
   });
