@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
+import { useNavigate } from 'react-router';
 import { Link, NavLink } from 'react-router-dom';
 import { login } from '../actions/userActions';
 import Modal from '../components/Modal';
@@ -10,10 +11,7 @@ const LoginScreen = ({ location, history }) => {
   const [password, setPassword] = useState('');
 
   const dispatch = useDispatch();
-
-  const redirect = location.search
-    ? location.search.split('=')[1]
-    : '/dashboard';
+  const navigate = useNavigate();
 
   console.log(location);
 
@@ -24,14 +22,14 @@ const LoginScreen = ({ location, history }) => {
 
   useEffect(() => {
     if (userInfo) {
-      history.push(redirect);
+      navigate('/dashboard');
     }
     if (error) {
       window.setTimeout(() => {
         dispatch({ type: USER_DETAILS_RESET });
       });
     }
-  }, [dispatch, error, history, redirect, userInfo]);
+  }, [dispatch, error, navigate, userInfo]);
 
   const submitHandler = (e) => {
     e.preventDefault();
