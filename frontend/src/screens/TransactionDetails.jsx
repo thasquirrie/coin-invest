@@ -44,7 +44,7 @@ export default function Example() {
   const params = useParams();
 
   useEffect(() => {
-    if (transaction && transaction.coinType) {
+    if (transaction && transaction._id) {
       setCoinType(transaction.coinType);
       setTransactionID(transaction.transactionId);
       setCoinSymbol(transaction.coinSymbol);
@@ -54,7 +54,6 @@ export default function Example() {
       setTransactionStatus(transaction.transactionStatus);
     } else {
       dispatch(transactDetails(params.id));
-      dispatch({ type: TRANSACTION_DETAILS_RESET });
     }
   }, [dispatch, params, transaction]);
 
