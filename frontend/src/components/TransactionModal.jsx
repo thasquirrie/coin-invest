@@ -10,6 +10,7 @@ import { addTransaction } from '../actions/transactionActions';
 import InfoModal from './InfoModal';
 import TransactAlertSuccess from './TransactAlertSuccess';
 import { CREATE_TRANSACTION_RESET } from '../constants/transactionConstants';
+import { useLocation, useNavigate } from 'react-router';
 
 const coins = [
   { type: 'Doge', symbol: 'DOGE' },
@@ -17,7 +18,7 @@ const coins = [
   { type: 'Algo', symbol: 'ALGO' },
 ];
 
-export default function TransactionModal({ modal, history, location, symbol }) {
+export default function TransactionModal({ modal, symbol }) {
   console.log(symbol);
   const [open, setOpen] = useState(true);
   const [amount, setAmount] = useState('');
@@ -28,6 +29,10 @@ export default function TransactionModal({ modal, history, location, symbol }) {
 
   console.log(selected);
   console.log(symbol);
+
+  const location = useLocation();
+
+  const navigate = useNavigate();
 
   const dispatch = useDispatch();
 
@@ -40,7 +45,7 @@ export default function TransactionModal({ modal, history, location, symbol }) {
 
   useEffect(() => {
     if (!userInfo) {
-      history.push('/login');
+      navigate('/login');
     }
     if (success) {
       setTransactAlert(true);
@@ -53,7 +58,7 @@ export default function TransactionModal({ modal, history, location, symbol }) {
         setInfoModal(true);
       }, 5000);
     }
-  }, [dispatch, history, success, userInfo]);
+  }, [dispatch, success, userInfo]);
 
   // const [open, setOpen] = useState(true);
   // const email = "josadegboye@gmail.com",
@@ -95,7 +100,7 @@ export default function TransactionModal({ modal, history, location, symbol }) {
   return (
     <>
       {infoModal && (
-        <InfoModal coinType={selected.type} amount={amount} history={history} />
+        <InfoModal coinType={selected.type} amount={amount}  />
       )}
 
       <Transition.Root show={open} as={Fragment}>

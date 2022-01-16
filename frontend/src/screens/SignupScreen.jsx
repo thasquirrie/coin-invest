@@ -1,10 +1,11 @@
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
+import { useLocation } from 'react-router';
 import { Link, NavLink } from 'react-router-dom';
 import { signup } from '../actions/userActions';
 import Modal from '../components/Modal';
 
-const SignupScreen = ({ location, history }) => {
+const SignupScreen = () => {
   const [username, setUsername] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
@@ -12,9 +13,8 @@ const SignupScreen = ({ location, history }) => {
 
   const dispatch = useDispatch();
 
-  const redirect = location.search
-    ? location.search.split('=')[1]
-    : '/dashboard';
+  const location = useLocation();
+  console.log({ location });
 
   const userSignup = useSelector((state) => state.userSignup);
 
@@ -22,9 +22,9 @@ const SignupScreen = ({ location, history }) => {
 
   useEffect(() => {
     if (userInfo) {
-      history.push(redirect);
+      // history.push(redirect);
     }
-  }, [userInfo, history, redirect]);
+  }, [userInfo]);
 
   const submitHandler = (e) => {
     e.preventDefault();
