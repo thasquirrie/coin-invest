@@ -3,6 +3,8 @@ import { useState, useEffect } from 'react';
 import { MenuAlt1Icon, PlusIcon } from '@heroicons/react/outline';
 import { CashIcon, ChevronRightIcon } from '@heroicons/react/solid';
 import { useDispatch, useSelector } from 'react-redux';
+import { useLocation, useNavigate } from 'react-router';
+
 import { Link } from 'react-router-dom';
 import Details from './Details';
 import { getMyDetails } from '../actions/userActions';
@@ -19,14 +21,17 @@ function classNames(...classes) {
   return classes.filter(Boolean).join(' ');
 }
 
-const Dashboard = ({ history, location }) => {
+const Dashboard = () => {
   const [email, setEmail] = useState('');
   const [username, setUsername] = useState('');
 
   const [sidebarOpen, setSidebarOpen] = useState(false);
   const dispatch = useDispatch();
 
-  const redirect = location.search ? location.search.split('=')[1] : '/login';
+  const location = useLocation();
+  const navigate = useNavigate();
+
+  // const redirect = location.search ? location.search.split('=')[1] : '/login';
   //  const newRedirect = user;
 
   const userDetails = useSelector((state) => state.userDetails);
@@ -45,7 +50,7 @@ const Dashboard = ({ history, location }) => {
   useEffect(() => {
     if (!userInfo) {
       console.log('No user infomation saved');
-      history.push(redirect);
+      navigate('/login');
     } else if (!user.username) {
       dispatch(getMyDetails());
     } else {
@@ -53,7 +58,7 @@ const Dashboard = ({ history, location }) => {
       console.log('Okay. Leggo');
       dispatch(listTransactions());
     }
-  }, [userInfo, history, redirect, dispatch, user]);
+  }, [userInfo, dispatch, navigate, user]);
 
   console.log({ location });
   console.log({ transactions });

@@ -74,7 +74,7 @@ export default function Pricing({ history, location }) {
   const { userInfo } = userLogin;
 
   console.log({ userInfo });
-  console.log(location.search);
+  // console.log(location.search);
   console.log([location]);
 
   const onClickHandler = () => {

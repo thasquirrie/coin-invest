@@ -1,4 +1,4 @@
-import { Route, BrowserRouter as Router, Switch } from 'react-router-dom';
+import { Route, BrowserRouter as Router, Routes } from 'react-router-dom';
 import Header from './components/Header';
 import HomeScreen from './screens/HomeScreen';
 // import logo from './logo.svg';
@@ -19,16 +19,22 @@ function App() {
         <div className='relative overflow-hidden'>
           <Header />
           <main>
-            <Switch>
-              <Route path='/login' component={LoginScreen} />
-              <Route path='/signup' component={SignupScreen} />
-              <Route path='/dashboard' component={DashboardScreen} />
-              <Route path='/pricing' component={PricingScreen} />
-              <Route path='/contact' component={ContactScreen} />
-              <Route path='/create-transaction' component={CreateTransaction} />
-              <Route path='/transactions/:id' component={TransactionDetails} />
-              <Route path='/' component={HomeScreen} exact />
-            </Switch>
+            <Routes>
+              <Route path='/login' element={<LoginScreen />} />
+              <Route path='/signup' element={<SignupScreen />} />
+              <Route path='/dashboard' element={<DashboardScreen />} />
+              <Route path='/pricing' element={<PricingScreen />} />
+              <Route path='/contact' element={<ContactScreen />} />
+              <Route
+                path='/create-transaction'
+                element={<CreateTransaction />}
+              />
+              <Route
+                path='/transactions/:id'
+                element={<TransactionDetails />}
+              />
+              <Route path='/' element={<HomeScreen />} exact />
+            </Routes>
           </main>
         </div>
       </div>
