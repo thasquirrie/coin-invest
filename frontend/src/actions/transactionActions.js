@@ -33,7 +33,7 @@ export const addTransaction = (data) => async (dispatch, getState) => {
       },
     } = await axios({
       method: 'POST',
-      url: '/api/v1/transactions',
+      url: 'http://localhost:8000/api/v1/transactions',
       data,
       headers,
     });
@@ -77,7 +77,7 @@ export const listTransactions = () => async (dispatch, getState) => {
       },
     } = await axios({
       method: 'GET',
-      url: '/api/v1/transactions',
+      url: 'http://localhost:8000/api/v1/transactions',
       headers,
     });
 
@@ -120,7 +120,7 @@ export const transactDetails = (id) => async (dispatch, getState) => {
       },
     } = await axios({
       method: 'GET',
-      url: `/api/v1/transactions/${id}`,
+      url: `http://localhost:8000/api/v1/transactions/${id}`,
       headers,
     });
 

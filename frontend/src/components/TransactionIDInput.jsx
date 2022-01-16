@@ -84,7 +84,8 @@ export default function TransactionIDInput({
           </div>
           <button
             type='submit'
-            className='mt-3 w-full px-6 sm:py-3 py-0 border border-transparent sm:text-md font-medium rounded-md text-white bg-gray-800 shadow-sm hover:bg-gray-900 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 sm:mt-0 sm:ml-3 sm:flex-shrink-0 sm:inline-flex sm:items-center sm:w-auto'
+            className='mt-3 w-full px-6 sm:py-3 py-0 border border-transparent sm:text-md font-medium rounded-md text-white bg-gray-800 shadow-sm hover:bg-gray-900 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 sm:mt-0 sm:ml-3 sm:flex-shrink-0 sm:inline-flex sm:items-center sm:w-auto disabled:bg-gray-400 disabled:cursor-not-allowed'
+            disabled={transactionIDInput.length !== 23}
           >
             Enter
           </button>

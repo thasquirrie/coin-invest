@@ -44,7 +44,7 @@ export default function Example() {
   const params = useParams();
 
   useEffect(() => {
-    if (transaction && transaction._id) {
+    if (transaction && transaction._id === params.id) {
       setCoinType(transaction.coinType);
       setTransactionID(transaction.transactionId);
       setCoinSymbol(transaction.coinSymbol);
