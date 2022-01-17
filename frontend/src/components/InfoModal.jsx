@@ -97,6 +97,7 @@ export default function InfoModal({ coinType, amount }) {
                   onClick={() => {
                     setOpen(false);
                     navigate('/dashboard');
+                    window.location.reload();
                   }}
                 >
                   I understand

@@ -60,6 +60,10 @@ const Dashboard = () => {
     }
   }, [userInfo, dispatch, navigate, user]);
 
+  // useEffect(() => {
+  //   fetchData();
+  // });
+
   console.log({ location });
   console.log({ transactions });
 

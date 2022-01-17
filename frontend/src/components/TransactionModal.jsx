@@ -99,9 +99,7 @@ export default function TransactionModal({ modal, symbol }) {
 
   return (
     <>
-      {infoModal && (
-        <InfoModal coinType={selected.type} amount={amount}  />
-      )}
+      {infoModal && <InfoModal coinType={selected.type} amount={amount} />}
 
       <Transition.Root show={open} as={Fragment}>
         <Dialog
@@ -179,7 +177,7 @@ export default function TransactionModal({ modal, symbol }) {
                           />
 
                           <Input
-                            labelName={`Enter ${selected.type} address`}
+                            labelName={`Enter ${selected.type} wallet address`}
                             name={'address'}
                             type={'text'}
                             value={address}

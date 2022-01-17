@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { useLocation } from 'react-router';
+import { useLocation, useNavigate } from 'react-router';
 import { Link, NavLink } from 'react-router-dom';
 import { signup } from '../actions/userActions';
 import Modal from '../components/Modal';
@@ -15,6 +15,7 @@ const SignupScreen = () => {
 
   const location = useLocation();
   console.log({ location });
+  const navigate = useNavigate();
 
   const userSignup = useSelector((state) => state.userSignup);
 
@@ -23,8 +24,9 @@ const SignupScreen = () => {
   useEffect(() => {
     if (userInfo) {
       // history.push(redirect);
+      navigate('/dashboard');
     }
-  }, [userInfo]);
+  }, [userInfo, navigate]);
 
   const submitHandler = (e) => {
     e.preventDefault();
