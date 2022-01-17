@@ -11,6 +11,10 @@ import {
   TRANSACTION_LIST_REQUEST,
   TRANSACTION_LIST_RESET,
   TRANSACTION_LIST_SUCCESS,
+  TRANSACTION_UPDATE_FAIL,
+  TRANSACTION_UPDATE_REQUEST,
+  TRANSACTION_UPDATE_RESET,
+  TRANSACTION_UPDATE_SUCCESS,
 } from '../constants/transactionConstants';
 
 export const createTransactionReducer = (state = {}, action) => {
@@ -87,20 +91,20 @@ export const transactionUpdateReducer = (
   action
 ) => {
   switch (action.type) {
-    case TRANSACTION_DETAILS_REQUEST:
+    case TRANSACTION_UPDATE_REQUEST:
       return { loading: true };
-    case TRANSACTION_DETAILS_SUCCESS:
+    case TRANSACTION_UPDATE_SUCCESS:
       console.log(action.payload);
       return {
         loading: false,
         success: true,
         transaction: action.payload,
       };
-    case TRANSACTION_DETAILS_RESET:
+    case TRANSACTION_UPDATE_RESET:
       return {
         enrollees: {},
       };
-    case TRANSACTION_DETAILS_FAIL:
+    case TRANSACTION_UPDATE_FAIL:
       return { loading: false, error: action.payload };
     default:
       return state;

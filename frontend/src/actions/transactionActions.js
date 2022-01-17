@@ -141,3 +141,47 @@ export const transactDetails = (id) => async (dispatch, getState) => {
     });
   }
 };
+
+export const updateTransaction = (id, data) => async (dispatch, getState) => {
+  try {
+    dispatch({ type: TRANSACTION_DETAILS_REQUEST });
+
+    const {
+      userLogin: {
+        userInfo: { token },
+      },
+    } = getState();
+
+    const headers = {
+      'Content-Type': 'application/json',
+      Authorization: `Bearer ${token}`,
+    };
+
+    const {
+      data: {
+        data: { transaction },
+      },
+    } = await axios({
+      method: 'PATCH',
+      url: `/api/v1/transactions/${id}`,
+      headers,
+      data,
+    });
+
+    console.log('New:', transaction);
+
+    dispatch({
+      type: TRANSACTION_DETAILS_SUCCESS,
+      payload: transaction,
+    });
+  } catch (error) {
+    console.log(error);
+    dispatch({
+      type: TRANSACTION_DETAILS_FAIL,
+      payload:
+        error.response && error.response.data.message
+          ? error.response.data.message
+          : error.message,
+    });
+  }
+};

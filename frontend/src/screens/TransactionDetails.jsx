@@ -34,12 +34,12 @@ export default function Example() {
   const [dateCreated, setDateCreated] = useState('');
   const [transactionStatus, setTransactionStatus] = useState('');
 
+  console.log(transactionIDInput);
+
   const transactionDetails = useSelector((state) => state.transactionDetails);
 
   const { loading, error, transaction } = transactionDetails;
   console.log({ transaction, loading });
-
-  // const {updateTransaction}
 
   const params = useParams();
 
@@ -86,16 +86,17 @@ export default function Example() {
               </p> */}
 
               <dl className='mt-12 text-sm font-medium'>
-                {!transaction.transactionID ? (
+                {!transaction.transactionId ? (
                   <TransactionIDInput
                     transactionIDInput={transactionIDInput}
                     setTransactionIDInput={setTransactionIDInput}
+                    id={params.id}
                   />
                 ) : (
                   <>
                     <dt className='text-gray-900'>Transaction ID</dt>
                     <dd className='text-indigo-600 mt-2'>
-                      51547878755545848512
+                      {transaction.transactionId}
                     </dd>
                   </>
                 )}
@@ -161,8 +162,8 @@ export default function Example() {
                     <dd className='mt-2 text-gray-700'>
                       <address className='not-italic'>
                         <span className=' font-bold'>
-                          {transaction.transactionID
-                            ? transaction.transactionID
+                          {transaction.transactionId
+                            ? transaction.transactionId
                             : 'No Transaction ID'}
                         </span>
                         {/* <span className='block'>7363 Cynthia Pass</span>

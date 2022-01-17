@@ -67,9 +67,9 @@ exports.createTransaction = catchAsync(async (req, res, next) => {
 });
 
 exports.editTransaction = catchAsync(async (req, res, next) => {
-  const transaction = Transaction.findByIdAndUpdate(
+  const transaction = await Transaction.findByIdAndUpdate(
     req.params.id,
-    req.body.transactionId,
+    req.body,
     {
       new: true,
       runValidators: true,
@@ -83,6 +83,11 @@ exports.editTransaction = catchAsync(async (req, res, next) => {
         404
       )
     );
+
+  console.log(req.body);
+  console.log(req.params);
+
+  // console.log({ transaction });
 
   res.status(200).json({
     status: 'success',

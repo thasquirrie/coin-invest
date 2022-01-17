@@ -12,6 +12,7 @@ import {
  createTransactionReducer,
  transactionDetailsReducer,
  transactionListReducer,
+ transactionUpdateReducer,
 } from './reducers/transactionReducers';
 
 const reducer = combineReducers({
@@ -22,6 +23,7 @@ const reducer = combineReducers({
  createTransaction: createTransactionReducer,
  transactionDetails: transactionDetailsReducer,
  transactionList: transactionListReducer,
+ transactionUpdate: transactionUpdateReducer,
 });
 
 const userInfoFromStorage = localStorage.getItem('userInfo')

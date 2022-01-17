@@ -7,7 +7,7 @@ const transactionSchema = mongoose.Schema({
     enum: ['Tron', 'Doge', 'Algo'],
     required: [true, 'A transaction must have a coin type'],
   },
-  transactionID: {
+  transactionId: {
     type: String,
   },
   coinSymbol: {

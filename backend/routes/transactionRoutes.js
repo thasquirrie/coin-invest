@@ -15,6 +15,7 @@ router
 
 router
   .route('/:id')
-  .get(authController.protect, transactionController.getTransaction);
+  .get(authController.protect, transactionController.getTransaction)
+  .patch(authController.protect, transactionController.editTransaction);
 
 module.exports = router;

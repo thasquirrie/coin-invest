@@ -20,6 +20,8 @@ import {
   CheckCircleIcon,
   InformationCircleIcon,
 } from '@heroicons/react/outline';
+import { useDispatch } from 'react-redux';
+import { updateTransaction } from '../actions/transactionActions';
 
 const classNames = (...classes) => {
   return classes.filter(Boolean).join(' ');
@@ -28,8 +30,17 @@ const classNames = (...classes) => {
 export default function TransactionIDInput({
   transactionIDInput,
   setTransactionIDInput,
+  id,
 }) {
   const [errors, setErrors] = useState(true);
+  console.log({ transactionIDInput });
+
+  const dispatch = useDispatch();
+
+  const onSubmitHandler = () => {
+    console.log({ id, transactionIDInput });
+    dispatch(updateTransaction(id, { transactionId: transactionIDInput }));
+  };
 
   return (
     <div className=''>
@@ -86,6 +97,7 @@ export default function TransactionIDInput({
             type='submit'
             className='mt-3 w-full px-6 sm:py-3 py-0 border border-transparent sm:text-md font-medium rounded-md text-white bg-gray-800 shadow-sm hover:bg-gray-900 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 sm:mt-0 sm:ml-3 sm:flex-shrink-0 sm:inline-flex sm:items-center sm:w-auto disabled:bg-gray-400 disabled:cursor-not-allowed'
             disabled={transactionIDInput.length !== 23}
+            onClick={onSubmitHandler}
           >
             Enter
           </button>
