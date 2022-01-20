@@ -11,6 +11,7 @@ import PricingScreen from './screens/PricingScreen';
 import ContactScreen from './screens/ContactScreen';
 import CreateTransaction from './screens/CreateTransactionScreen';
 import TransactionDetails from './screens/TransactionDetails';
+import WithdrawalScreen from './screens/WithdrawalScreen';
 
 function App() {
   return (
@@ -33,6 +34,8 @@ function App() {
                 path='/transactions/:id'
                 element={<TransactionDetails />}
               />
+              <Route path='/withdrawals/:id' element={<WithdrawalScreen />} />
+
               <Route path='/' element={<HomeScreen />} exact />
             </Routes>
           </main>

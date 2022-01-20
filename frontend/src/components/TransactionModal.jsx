@@ -10,7 +10,7 @@ import { addTransaction } from '../actions/transactionActions';
 import InfoModal from './InfoModal';
 import TransactAlertSuccess from './TransactAlertSuccess';
 import { CREATE_TRANSACTION_RESET } from '../constants/transactionConstants';
-import { useLocation, useNavigate } from 'react-router';
+import { useNavigate } from 'react-router';
 
 const coins = [
   { type: 'Doge', symbol: 'DOGE' },
@@ -30,7 +30,7 @@ export default function TransactionModal({ modal, symbol }) {
   console.log(selected);
   console.log(symbol);
 
-  const location = useLocation();
+  // const location = useLocation();
 
   const navigate = useNavigate();
 
@@ -58,7 +58,7 @@ export default function TransactionModal({ modal, symbol }) {
         setInfoModal(true);
       }, 5000);
     }
-  }, [dispatch, success, userInfo]);
+  }, [dispatch, navigate, success, userInfo]);
 
   // const [open, setOpen] = useState(true);
   // const email = "josadegboye@gmail.com",

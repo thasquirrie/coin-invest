@@ -10,6 +10,7 @@ import Details from './Details';
 import { getMyDetails } from '../actions/userActions';
 import Sidebar from '../components/Sidebar';
 import { listTransactions } from '../actions/transactionActions';
+import LoadingPage from '../components/LoadingPage';
 
 const statusStyles = {
   success: 'bg-green-100 text-green-800',
@@ -136,6 +137,7 @@ const Dashboard = () => {
                 </div>
 
                 {/* Activity list (smallest breakpoint only) */}
+                {transactLoading && <LoadingPage />}
                 {transactions && (
                   <div className='shadow sm:hidden'>
                     <ul className='mt-2 divide-y divide-gray-200 overflow-hidden shadow sm:hidden'>

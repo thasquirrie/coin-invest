@@ -4,6 +4,7 @@ import { useLocation, useNavigate } from 'react-router';
 import { Link, NavLink } from 'react-router-dom';
 import { signup } from '../actions/userActions';
 import Modal from '../components/Modal';
+import { USER_UPDATE_RESET } from '../constants/userConstants';
 
 const SignupScreen = () => {
   const [username, setUsername] = useState('');
@@ -19,14 +20,19 @@ const SignupScreen = () => {
 
   const userSignup = useSelector((state) => state.userSignup);
 
-  const { loading, error, userInfo } = userSignup;
+  const { loading, error, success } = userSignup;
 
   useEffect(() => {
-    if (userInfo) {
-      // history.push(redirect);
+    if (success) {
       navigate('/dashboard');
     }
-  }, [userInfo, navigate]);
+
+    if (error) {
+      window.setTimeout(() => {
+        dispatch({ type: USER_UPDATE_RESET });
+      });
+    }
+  }, [dispatch, error, navigate, success]);
 
   const submitHandler = (e) => {
     e.preventDefault();

@@ -39,7 +39,10 @@ export const createTransactionReducer = (state = {}, action) => {
   }
 };
 
-export const transactionListReducer = (state = {}, action) => {
+export const transactionListReducer = (
+  state = { transactions: [] },
+  action
+) => {
   switch (action.type) {
     case TRANSACTION_LIST_REQUEST:
       return { loading: true };
@@ -52,7 +55,7 @@ export const transactionListReducer = (state = {}, action) => {
       };
     case TRANSACTION_LIST_RESET:
       return {
-        transaction: {},
+        transaction: { transaction: [] },
       };
     case TRANSACTION_LIST_FAIL:
       return { loading: false, error: action.payload };
@@ -77,7 +80,7 @@ export const transactionDetailsReducer = (
       };
     case TRANSACTION_DETAILS_RESET:
       return {
-        enrollees: {},
+        transactions: {},
       };
     case TRANSACTION_DETAILS_FAIL:
       return { loading: false, error: action.payload };
@@ -102,7 +105,7 @@ export const transactionUpdateReducer = (
       };
     case TRANSACTION_UPDATE_RESET:
       return {
-        enrollees: {},
+        transaction: {},
       };
     case TRANSACTION_UPDATE_FAIL:
       return { loading: false, error: action.payload };

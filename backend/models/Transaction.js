@@ -40,7 +40,7 @@ const transactionSchema = mongoose.Schema({
 transactionSchema.pre(/^find/, function (next) {
   this.populate({
     path: 'user',
-    select: 'username',
+    select: 'username email',
   });
 
   next();

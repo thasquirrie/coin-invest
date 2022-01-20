@@ -1,11 +1,14 @@
+import { XIcon } from '@heroicons/react/outline';
 import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { useParams } from 'react-router-dom';
+import { Link, useParams, useNavigate } from 'react-router-dom';
 import { transactDetails } from '../actions/transactionActions';
+import { addWithdrawal } from '../actions/withdrawalActions';
 import LoadingCircle from '../components/LoadingCircle';
 import LoadingPage from '../components/LoadingPage';
 import TransactionIDInput from '../components/TransactionIDInput';
 import { TRANSACTION_DETAILS_RESET } from '../constants/transactionConstants';
+import { WITHDRAWAL_UPDATE_RESET } from '../constants/withdrawalConstant';
 
 /* This example requires Tailwind CSS v2.0+ */
 const products = [
@@ -26,13 +29,17 @@ const products = [
 export default function Example() {
   const dispatch = useDispatch();
   const [transactionIDInput, setTransactionIDInput] = useState('');
+  const [email, setEmail] = useState('');
   const [coinType, setCoinType] = useState('');
-  const [transactionID, setTransactionID] = useState('');
+  const [transactionId, setTransactionId] = useState('');
   const [coinSymbol, setCoinSymbol] = useState('');
   const [amount, setAmount] = useState('');
   const [address, setAddress] = useState('');
   const [dateCreated, setDateCreated] = useState('');
   const [transactionStatus, setTransactionStatus] = useState('');
+  const [username, setUsername] = useState('');
+
+  console.log();
 
   console.log(transactionIDInput);
 
@@ -41,17 +48,28 @@ export default function Example() {
   const { loading, error, transaction } = transactionDetails;
   console.log({ transaction, loading });
 
+  // const withdrawalUpdate = useSelector((state) => state.withdrawalUpdate);
+
+  const createWithdrawal = useSelector((state) => state.createWithdrawal);
+
+  const { loading: loadingCreate, success, withdrawal } = createWithdrawal;
+
+  console.log({ withdrawal });
+
   const params = useParams();
 
   useEffect(() => {
     if (transaction && transaction._id === params.id) {
+      setEmail(transaction.user.email);
       setCoinType(transaction.coinType);
-      setTransactionID(transaction.transactionId);
+      setTransactionId(transaction.transactionId);
       setCoinSymbol(transaction.coinSymbol);
       setAmount(transaction.amount);
       setAddress(transaction.address);
       setDateCreated(transaction.dateCreated);
       setTransactionStatus(transaction.transactionStatus);
+      setUsername(transaction.user.username);
+      setAddress(transaction.address);
     } else {
       dispatch(transactDetails(params.id));
     }
@@ -65,7 +83,42 @@ export default function Example() {
       : '../img/tron.png'
     : '';
 
-  const days = 7 * 24 * 60 * 60 * 1000;
+  // const days = 7 * 24 * 60 * 60 * 1000;
+  const days = 1 * 60 * 60 * 1000;
+
+  const navigate = useNavigate();
+
+  const onClickHandler = () => {
+    console.log({
+      email,
+      transactionId,
+      amount,
+      username,
+      address,
+      coinType,
+      coinSymbol,
+    });
+    dispatch(
+      addWithdrawal({
+        email,
+        transactionId,
+        amount,
+        username,
+        address,
+        coinType,
+        coinSymbol,
+      })
+    );
+  };
+
+  useEffect(() => {
+    if (success) {
+      window.setTimeout(() => {
+        navigate(`/withdrawals/${withdrawal.id}`);
+        dispatch({ type: WITHDRAWAL_UPDATE_RESET });
+      }, 3000);
+    }
+  });
 
   return (
     <>
@@ -107,7 +160,7 @@ export default function Example() {
               aria-labelledby='order-heading'
               className='mt-10 border-t border-gray-200'
             >
-              <h2 id='order-heading' className='sr-only'>
+              <h2 id='order-heading text-red-500' className='sr-only'>
                 Your order
               </h2>
               <h3 className='sr-only'>Items</h3>
@@ -251,17 +304,53 @@ export default function Example() {
                   </div>
                 </dl>
               </div>
-              <div className='mt-5 sm:col-span-2 sm:flex sm:justify-end'>
-                <button
-                  type='button'
-                  className='mt-2 w-full inline-flex items-center justify-center px-6 py-3 border border-transparent rounded-md shadow-sm text-base font-medium text-white bg-gray-800 hover:bg-gray-900 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-500 sm:w-auto disabled:cursor-not-allowed disabled:bg-gray-300'
-                  disabled={
-                    Date.now() < Date.parse(transaction.dateCreated) + days
-                  }
-                >
-                  Withdrawal request
-                </button>
-              </div>
+              {!loadingCreate ? (
+                <div className='mt-5 sm:col-span-2 sm:flex sm:justify-end'>
+                  {/* <Link to='/withdrawals'> */}
+
+                  <button
+                    type='button'
+                    className='mt-2 w-full inline-flex items-center justify-center px-6 py-3 border border-transparent rounded-md shadow-sm text-base font-medium text-white bg-gray-800 hover:bg-gray-900 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-500 sm:w-auto disabled:cursor-not-allowed disabled:bg-gray-300'
+                    onClick={onClickHandler}
+                    disabled={
+                      Date.now() < Date.parse(transaction.dateCreated) + days
+                    }
+                  >
+                    Withdrawal request
+                  </button>
+                  {/* </Link> */}
+                </div>
+              ) : (
+                <div class='flex items-center justify-end'>
+                  <button
+                    type='button'
+                    class='mt-2 inline-flex items-center justify-center px-6 py-3 font-semibold leading-6  shadow-sm text-base rounded-md text-white bg-gray-800 hover:bg-gray-900 transition ease-in-out duration-150 cursor-not-allowed'
+                    disabled=''
+                  >
+                    <svg
+                      class='animate-spin -ml-1 mr-3 h-5 w-5 text-white'
+                      xmlns='http://www.w3.org/2000/svg'
+                      fill='none'
+                      viewBox='0 0 24 24'
+                    >
+                      <circle
+                        class='opacity-25'
+                        cx='12'
+                        cy='12'
+                        r='10'
+                        stroke='currentColor'
+                        stroke-width='4'
+                      ></circle>
+                      <path
+                        class='opacity-75'
+                        fill='currentColor'
+                        d='M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z'
+                      ></path>
+                    </svg>
+                    Processing...
+                  </button>
+                </div>
+              )}
             </section>
           </div>
         </main>

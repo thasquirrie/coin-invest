@@ -1,4 +1,8 @@
 import {
+  GET_USERS_FAIL,
+  GET_USERS_REQUEST,
+  GET_USERS_RESET,
+  GET_USERS_SUCCESS,
   USER_DETAILS_FAIL,
   USER_DETAILS_REQUEST,
   USER_DETAILS_RESET,
@@ -35,7 +39,7 @@ export const userSignupReducer = (state = {}, action) => {
     case USER_SIGNUP_REQUEST:
       return { loading: true };
     case USER_SIGNUP_SUCCESS:
-      return { loading: false, userInfo: action.payload };
+      return { loading: false, success: true, userInfo: action.payload };
     case USER_SIGNUP_FAIL:
       return { loading: false, error: action.payload };
     default:
@@ -68,6 +72,21 @@ export const userUpdateDetailsReducer = (state = {}, action) => {
       return { loading: false, error: action.payload };
     case USER_DETAILS_RESET:
       return {};
+    default:
+      return state;
+  }
+};
+
+export const usersListReducer = (state = { users: [] }, action) => {
+  switch (action.type) {
+    case GET_USERS_REQUEST:
+      return { loading: true };
+    case GET_USERS_SUCCESS:
+      return { loading: false, success: true, users: action.payload };
+    case GET_USERS_FAIL:
+      return { loading: false, error: action.payload };
+    case GET_USERS_RESET:
+      return { users: [] };
     default:
       return state;
   }
