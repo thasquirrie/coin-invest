@@ -83,8 +83,8 @@ export default function Example() {
       : '../img/tron.png'
     : '';
 
-  // const days = 7 * 24 * 60 * 60 * 1000;
-  const days = 1 * 60 * 60 * 1000;
+  const days = 7 * 24 * 60 * 60 * 1000;
+  // const days = 1 * 60 * 60 * 1000;
 
   const navigate = useNavigate();
 
