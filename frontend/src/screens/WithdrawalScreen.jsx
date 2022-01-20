@@ -96,7 +96,8 @@ export default function WithdrawalScreen() {
                     <p className='flex items-center justify-between text-sm font-medium text-gray-900 border-t border-gray-200 pt-6 mt-6'>
                       <span className='text-base'>Total</span>
                       <span className='text-base'>
-                        {withdrawal.amount * (1 + 0.05)} {withdrawal.coinSymbol}
+                        {Number(withdrawal.amount) + withdrawal.amount * 0.05}{' '}
+                        {withdrawal.coinSymbol}
                       </span>
                     </p>
                   </>
@@ -124,14 +125,15 @@ export default function WithdrawalScreen() {
                   <div className='flex justify-between'>
                     <dt className='flex'>Accumulated Earnings</dt>
                     <dd className='text-gray-900'>
-                      {withdrawal.amount * 0.05}
+                      {withdrawal.amount * 0.05} {withdrawal.coinSymbol}
                     </dd>
                   </div>
 
                   <div className='flex items-center justify-between border-t border-gray-200 text-gray-900 pt-6'>
                     <dt>Total</dt>
                     <dd className='text-base'>
-                      {withdrawal.amount + withdrawal.amount * 0.05}{' '}
+                      {Number(withdrawal.amount) +
+                        Number(withdrawal.amount * 0.05)}{' '}
                       {withdrawal.coinSymbol}
                     </dd>
                   </div>
@@ -256,7 +258,8 @@ export default function WithdrawalScreen() {
                         type='submit'
                         className='w-full mt-6 bg-indigo-600 border border-transparent rounded-md shadow-sm py-2 px-4 text-sm font-medium text-white hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500'
                       >
-                        Approve {withdrawal.amount * (1 + 0.05)} withdrawal
+                        Approve {withdrawal.amount + withdrawal.amount * 0.05}{' '}
+                        withdrawal
                       </button>
                     </div>
                   )}
